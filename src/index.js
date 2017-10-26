@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { injectGlobal } from 'styled-components';
 
 injectGlobal`
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Anton');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Anton|Cinzel|Rock+Salt');
 
   body {
     margin: 0;

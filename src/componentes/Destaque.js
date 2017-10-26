@@ -9,6 +9,8 @@ const Inicio = styled.div`
     font-family: 'Anton', sans-serif;
 `
 
-export default ()=>(
-    <Inicio>Pelicula de Destaque</Inicio>
+export default ({pelicula})=>(
+    <Inicio>
+    <h1>{pelicula.title}</h1>
+    </Inicio>
 )

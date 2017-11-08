@@ -36,7 +36,7 @@ const ItemPelicula = styled.li`
   }
 
 `;
-const PosterImage = styled.img``;
+
 export default ({ data }) => (
   <Contenedor>
     <ul>

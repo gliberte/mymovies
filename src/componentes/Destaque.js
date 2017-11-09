@@ -37,14 +37,25 @@ const PeliculaInfoTitulo = styled.h1`
   color: rgba(255, 179, 0, 1);
   font-family: "Rock Salt", cursive;
 `;
-export default ({ pelicula }) => (
-  <Inicio pelicula={pelicula}>
-    <PeliculaInfo>
-      <PeliculaInfoContent>
-        <PeliculaInfoTitulo>{pelicula.title}</PeliculaInfoTitulo>
-        <PeliculaInfoOverview>{pelicula.overview}</PeliculaInfoOverview>
-        <span>{`${pelicula.vote_average}/10`}</span>
-      </PeliculaInfoContent>
-    </PeliculaInfo>
-  </Inicio>
-);
+export default ({ pelicula }) => {
+  if(pelicula){
+    return (
+      <Inicio pelicula={pelicula}>
+      <PeliculaInfo>
+        <PeliculaInfoContent>
+          <PeliculaInfoTitulo>{pelicula.title}</PeliculaInfoTitulo>
+          <PeliculaInfoOverview>{pelicula.overview}</PeliculaInfoOverview>
+          <span>{`${pelicula.vote_average}/10`}</span>
+        </PeliculaInfoContent>
+      </PeliculaInfo>
+    </Inicio>
+    )
+  }else{
+    return (
+      <div>Cargando...</div>
+    )
+  }
+  
+  
+  
+};

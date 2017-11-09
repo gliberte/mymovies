@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from 'react-router-dom'
 
 const urlbaseImage = "https://image.tmdb.org/t/p/w154/";
 
@@ -9,11 +10,12 @@ const Contenedor = styled.div`
     padding-left: 0;
     overflow:scroll;
     display:flex;
+    margin:0;
     align-items:stretch;
 
   }
 `;
-const ItemPelicula = styled.li`
+const ItemPelicula = styled(Link)`
   list-style: none;
   display: inline-block;
   min-width:200px;
@@ -30,6 +32,7 @@ const ItemPelicula = styled.li`
       background:rgba(38,50,56 ,0.5);
   }
   &:hover{
+    cursor:pointer;
     >span{
         display:block;
     }
@@ -41,7 +44,7 @@ export default ({ data }) => (
   <Contenedor>
     <ul>
       {data.map(pelicula => (
-        <ItemPelicula key={pelicula.id} pelicula={pelicula}>
+        <ItemPelicula key={pelicula.id} to={`/detalles/${pelicula.id}`} pelicula={pelicula}>
           <span>{pelicula.title}</span>
         </ItemPelicula>
       ))}

@@ -2,13 +2,30 @@ import React from "react";
 import Destaque from "../componentes/Destaque";
 import Estrenos from "../componentes/Estrenos";
 import axios from 'axios'
+import styled from 'styled-components'
+
+import TituloSeccion from '../componentes/TituloSeccion'
+
+
 export default class HomePage extends React.Component {
     state = {
         estrenos:[],
-        peliculaDestacada:""
+        peliculaDestacada:"",
+        proximos_estrenos:[]
     }
     componentDidMount() {
         this.getPopularMovies()
+        this.getProximosEstrenos()
+    }
+    getProximosEstrenos = async ()=>{
+        try {
+            const result = await axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=d132c8b7351c4c050ee5023941590be8')
+            this.setState({
+                proximos_estrenos:result.data.results
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
     }
     getPopularMovies = async ()=>{
         try {
@@ -32,7 +49,10 @@ export default class HomePage extends React.Component {
     return (
       <div>
         <Destaque pelicula={this.state.peliculaDestacada} />
+        <TituloSeccion>Estrenos:</TituloSeccion>
         <Estrenos data={this.state.estrenos} />
+        <TituloSeccion>Próximamente:</TituloSeccion>
+        <Estrenos data={this.state.proximos_estrenos} />
       </div>
     );
   }

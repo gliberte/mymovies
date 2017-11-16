@@ -1,22 +1,28 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import styled from 'styled-components'
-
+import {connect} from 'react-redux'
 import HomePage from "../paginas/HomePage";
 import PeliculaDetalle from "../paginas/PeliculaDetalle";
 import Footer from '../componentes/Footer'
 import Header from '../componentes/Header'
 
-const Container = styled.div`
-  
-`
+import {updateFecha} from '../redux/actions/testActions'
+
+
 
 class App extends React.Component {
+  componentDidMount(){
+    setInterval(this.props.updateFecha,1000)
+    
+  }
+  
+  
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Header/>
+          <Header fecha={this.props.test.fecha}/>
           <Route exact path="/" component={HomePage} />
           <Route path="/detalles/:peliculaid" component={PeliculaDetalle} />
           <Footer/>
@@ -25,4 +31,9 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+function mapStateToProps({test}) {
+  return{test}
+}
+export default connect(mapStateToProps,{
+  updateFecha
+})(App);

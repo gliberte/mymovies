@@ -3,11 +3,12 @@ import Destaque from "../componentes/Destaque";
 import Estrenos from "../componentes/Estrenos";
 import axios from 'axios'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
 
 import TituloSeccion from '../componentes/TituloSeccion'
 
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
     state = {
         estrenos:[],
         peliculaDestacada:"",
@@ -16,6 +17,7 @@ export default class HomePage extends React.Component {
     componentDidMount() {
         this.getPopularMovies()
         this.getProximosEstrenos()
+        console.log(this.props.test.test)
     }
     getProximosEstrenos = async ()=>{
         try {
@@ -57,3 +59,10 @@ export default class HomePage extends React.Component {
     );
   }
 }
+
+function mapStateToProps({test}) {
+    return {
+        test
+    }
+}
+export default connect(mapStateToProps)(HomePage)

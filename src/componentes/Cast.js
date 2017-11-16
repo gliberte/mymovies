@@ -15,13 +15,13 @@ const Cargando = styled.div`
 `
 
 
-export default ({creditos})=>{
-    if(creditos){
+export default ({cast})=>{
+    if(cast){
         return (
             <div>
                 <TituloSeccion>Reparto:</TituloSeccion>
                 <Container>
-                {creditos.cast.map(actor=>(
+                {cast.cast.map(actor=>(
                     <Actor actor={actor}/>
                 ))}
                 </Container>

@@ -2,12 +2,11 @@ import React from "react";
 import axios from "axios";
 
 import Destaque from "../componentes/Destaque";
-import Credits from "../componentes/Credits";
+import Cast from "../componentes/Cast";
 
 export default class PeliculaDetalle extends React.Component {
   state = {
-    pelicula: "",
-    creditos: ""
+    pelicula: ""
   };
 
   componentDidMount() {
@@ -22,7 +21,7 @@ export default class PeliculaDetalle extends React.Component {
       );
       console.log(result.data);
       this.setState({
-        creditos: result.data
+        cast: result.data
       });
     } catch (error) {
       console.log(error.message);
@@ -44,7 +43,7 @@ export default class PeliculaDetalle extends React.Component {
     return (
       <div>
         <Destaque pelicula={this.state.pelicula} />
-        <Credits creditos={this.state.creditos} />
+        <Cast cast={this.state.cast} />
       </div>
     );
   }

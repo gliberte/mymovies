@@ -21,7 +21,7 @@ export default ({cast})=>{
             <div>
                 <TituloSeccion>Reparto:</TituloSeccion>
                 <Container>
-                {cast.cast.map(actor=>(
+                {cast.map(actor=>(
                     <Actor actor={actor}/>
                 ))}
                 </Container>

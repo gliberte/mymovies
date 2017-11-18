@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./componentes/App";
 import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
+import reduxThunk from 'redux-thunk'
+import promise from 'redux-promise-middleware'
 import { createStore,applyMiddleware } from "redux";
 import logger from 'redux-logger'
 
@@ -18,8 +20,7 @@ injectGlobal`
   }
 `;
 
-
-const store = createStore(reducers,{},applyMiddleware(logger));
+const store = createStore(reducers,{},applyMiddleware(promise(),logger,reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>

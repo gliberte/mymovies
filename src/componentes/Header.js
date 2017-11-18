@@ -21,6 +21,6 @@ const Fecha = styled.div`
 export default ({fecha})=>(
     <Contenedor>
         <h3>That`s My Movie!</h3>
-        <Fecha>{fecha.toString()}</Fecha>
+        <Fecha>{fecha.toLocaleString()}</Fecha>
     </Contenedor>
 )

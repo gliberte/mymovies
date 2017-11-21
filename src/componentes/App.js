@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import HomePage from "../paginas/HomePage";
 import PeliculaDetalle from "../paginas/PeliculaDetalle";
 import Footer from '../componentes/Footer'
-import Header from '../componentes/Header'
+
 
 import {updateFecha} from '../redux/actions/testActions'
 
@@ -13,6 +13,7 @@ import {updateFecha} from '../redux/actions/testActions'
 
 class App extends React.Component {
   componentDidMount(){
+    
     setInterval(this.props.updateFecha,1000)
     
   }
@@ -22,7 +23,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Header fecha={this.props.test.fecha}/>
+          
           <Route exact path="/" component={HomePage} />
           <Route path="/detalles/:peliculaid" component={PeliculaDetalle} />
           <Footer/>

@@ -1,47 +1,61 @@
 import React from "react";
+import axios from "axios";
 import Destaque from "../componentes/Destaque";
 import Estrenos from "../componentes/Estrenos";
-import axios from 'axios'
-import styled from 'styled-components'
-import {connect} from 'react-redux'
+import styled from "styled-components";
+import TituloSeccion from "../componentes/TituloSeccion";
+import { connect } from "react-redux";
 
-import TituloSeccion from '../componentes/TituloSeccion'
+import Header from "../componentes/Header";
+import SearchResults from "../componentes/SearchResults";
 
-import {getEstrenos,getProximosEstrenos} from '../redux/actions/moviesActions'
-
-
+import {
+  getEstrenos,
+  getProximosEstrenos
+} from "../redux/actions/moviesActions";
 
 class HomePage extends React.Component {
-    state = {
-        proximos_estrenos:[]
+  componentDidMount() {
+    this.props.getEstrenos();
+    this.props.getProximosEstrenos();
+  }
+
+  renderResults = () => {
+    const { data } = this.props.search;
+    if (data.length === 0) {
+      return (
+        <div>
+          <Destaque pelicula={this.props.estrenos.peliculaDestacada} />
+          <TituloSeccion>Estrenos:</TituloSeccion>
+          <Estrenos peliculas={this.props.estrenos.data} />
+          <TituloSeccion>Próximamente:</TituloSeccion>
+          <Estrenos peliculas={this.props.proximos_estrenos.data} />
+        </div>
+      );
+    } else {
+      return <SearchResults data={data} />;
     }
-    componentDidMount() {
-        this.props.getEstrenos()
-        this.props.getProximosEstrenos()
-       
-    }
-   
-   
+  };
+
   render() {
     return (
       <div>
-        <Destaque pelicula={this.props.estrenos.peliculaDestacada} />
-        <TituloSeccion>Estrenos:</TituloSeccion>
-        <Estrenos data={this.props.estrenos.data} />
-        <TituloSeccion>Próximamente:</TituloSeccion>
-        <Estrenos data={this.props.proximos_estrenos.data}></Estrenos>
-        
+        <Header path={this.props.match.path} />
+        {this.renderResults()}
       </div>
     );
   }
 }
 
-function mapStateToProps({test,estrenos,proximos_estrenos}) {
-    return {
-        test,estrenos,proximos_estrenos
-    }
+function mapStateToProps({ estrenos, proximos_estrenos, search }) {
+  return {
+    estrenos,
+    proximos_estrenos,
+    search
+  };
 }
-export default connect(mapStateToProps,{
-    getEstrenos,
-    getProximosEstrenos
-})(HomePage)
+
+export default connect(mapStateToProps, {
+  getEstrenos,
+  getProximosEstrenos
+})(HomePage);

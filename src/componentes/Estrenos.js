@@ -40,10 +40,10 @@ const ItemPelicula = styled(Link)`
 
 `;
 
-export default ({ data }) => (
+export default ({ peliculas }) => (
   <Contenedor>
     <ul>
-      {data.map(pelicula => (
+      {peliculas.map(pelicula => (
         <ItemPelicula key={pelicula.id} to={`/detalles/${pelicula.id}`} pelicula={pelicula}>
           <span>{pelicula.title}</span>
         </ItemPelicula>

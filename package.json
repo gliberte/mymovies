@@ -2,7 +2,7 @@
   "name": "mispeliculas",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://gliberte.github.io/thatmymovie",
+  "homepage": "https://gliberte.github.io/thatmymovie",
   "dependencies": {
     "axios": "^0.17.0",
     "font-awesome": "^4.7.0",
